@@ -47,7 +47,12 @@ class PatientViewController: UIViewController {
         
         if newPatient.managedObjectContext.save(&error){
             println("SAVED")
-            self.dismissViewControllerAnimated(true, completion: nil)
+            
+            /*navigationController.presentingViewController.dismissViewControllerAnimated(true, completion: {
+                println("sentback")
+                
+                })*/
+
             return
         }
         

@@ -6,16 +6,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MediForm/PatientTableViewController.swift"
-            timestampString = "427147479.711516"
+            timestampString = "427221668.98231"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "88"
-            endingLineNumber = "88"
-            landmarkName = "tableView(_:cellForRowAtIndexPath:)"
+            startingLineNumber = "13"
+            endingLineNumber = "13"
+            landmarkName = "init(coder:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

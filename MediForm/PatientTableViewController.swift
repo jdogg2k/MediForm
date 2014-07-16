@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PatientTableViewController: UITableViewController {
+class PatientTableViewController: UITableViewController, NSFetchedResultsControllerDelegate {
     
     init(coder aDecoder: NSCoder!)
     {
@@ -32,32 +32,24 @@ class PatientTableViewController: UITableViewController {
     }
     var _cdh: CoreDataHelper? = nil
     
+    var fetchedResultController: NSFetchedResultsController = NSFetchedResultsController()
+    
+    func getFetchedResultController() -> NSFetchedResultsController {
+        fetchedResultController = NSFetchedResultsController(fetchRequest: patientFetchRequest(), managedObjectContext: self.cdh.managedObjectContext, sectionNameKeyPath: nil, cacheName: nil)
+        return fetchedResultController
+    }
+    
+    func patientFetchRequest() -> NSFetchRequest {
+        let fetchRequest = NSFetchRequest(entityName: "Patient")
+        let sortDescriptor = NSSortDescriptor(key: "lastName", ascending: true)
+        fetchRequest.sortDescriptors = [sortDescriptor]
+        return fetchRequest
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-        println("loading up")
-        
-        //fetch families
-        println(" ======== Fetch ======== ")
-        
-        var error: NSError? = nil
-        var fReq: NSFetchRequest = NSFetchRequest(entityName: "Patient")
-        
-        var result = self.cdh.managedObjectContext.executeFetchRequest(fReq, error:&error)
-        for resultItem : AnyObject in result {
-            var patientItem = resultItem as Patient
-            println("loading" + patientItem.firstName + " " + patientItem.lastName)
-            patients.append(patientItem)
-        }
-        
-        self.patientTableView.reloadData()
-        
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-        
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+
     }
     
     override func didReceiveMemoryWarning() {
@@ -70,24 +62,38 @@ class PatientTableViewController: UITableViewController {
     override func numberOfSectionsInTableView(tableView: UITableView?) -> Int {
         // #warning Potentially incomplete method implementation.
         // Return the number of sections.
-        return 0
+        return fetchedResultController.sections.count
     }
     
     override func tableView(tableView: UITableView!, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete method implementation.
         // Return the number of rows in the section.
-        return patients.count
+        return fetchedResultController.sections[section].numberOfObjects
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        //fetch families
+        println(" ======== Fetch ======== ")
+        
+        fetchedResultController = getFetchedResultController()
+        fetchedResultController.delegate = self
+        fetchedResultController.performFetch(nil)
+        
+        tableView.reloadData()
     }
     
     
     override func tableView(tableView: UITableView!, cellForRowAtIndexPath indexPath: NSIndexPath!) -> UITableViewCell? {
-        let kCellIdentifier: String = "PatientListCell"
-    let cell = tableView.dequeueReusableCellWithIdentifier(kCellIdentifier) as UITableViewCell
-        let patient = self.patients[indexPath.row]
-    // Configure the cell...
+        
+        var cell = tableView.dequeueReusableCellWithIdentifier("PatientListCell", forIndexPath: indexPath) as UITableViewCell
+        let patient = fetchedResultController.objectAtIndexPath(indexPath) as Patient
         cell.text = patient.firstName + " " + patient.lastName
+        return cell
+
+    }
     
-    return cell
+    func controllerDidChangeContent(controller: NSFetchedResultsController!) {
+        tableView.reloadData()
     }
     
     
