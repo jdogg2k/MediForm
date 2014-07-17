@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6154.17" systemVersion="13D65" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="EYn-5i-qeI">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6154.17" systemVersion="14A238x" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="EYn-5i-qeI">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6153.11"/>
     </dependencies>
@@ -49,13 +49,14 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="vky-I0-3eA" kind="show" id="ob7-ZY-D1R"/>
+                                    <segue destination="vky-I0-3eA" kind="show" identifier="NewPatient" id="ob7-ZY-D1R"/>
                                 </connections>
                             </button>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="patientTableView" destination="y1g-3G-9mv" id="ws1-kz-DI2"/>
+                        <segue destination="vky-I0-3eA" kind="show" identifier="PatientSelect" id="6nV-Bo-KqH"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Pbk-S2-4SJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -180,4 +181,7 @@ EFppcCBDb2RlA
             <point key="canvasLocation" x="83" y="443"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="ob7-ZY-D1R"/>
+    </inferredMetricsTieBreakers>
 </document>

@@ -92,6 +92,21 @@ class PatientTableViewController: UITableViewController, NSFetchedResultsControl
 
     }
     
+    override func prepareForSegue(segue: UIStoryboardSegue!, sender: AnyObject!) {
+        if segue.identifier == "PatientSelect"{
+            let indexPath = sender as NSIndexPath
+            let patient: Patient = fetchedResultController.objectAtIndexPath(indexPath) as Patient
+            
+            let vc = segue.destinationViewController as PatientViewController
+            vc.patient = patient
+        }
+    }
+    
+    override func tableView(tableView: UITableView!, didSelectRowAtIndexPath indexPath: NSIndexPath!) {
+        let managedObject:NSManagedObject = fetchedResultController.objectAtIndexPath(indexPath) as NSManagedObject
+        self.performSegueWithIdentifier("PatientSelect", sender: indexPath)
+    }
+    
     func controllerDidChangeContent(controller: NSFetchedResultsController!) {
         tableView.reloadData()
     }
