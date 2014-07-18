@@ -111,6 +111,18 @@ class PatientTableViewController: UITableViewController, NSFetchedResultsControl
         tableView.reloadData()
     }
     
+    override func tableView(tableView: UITableView!, canEditRowAtIndexPath indexPath: NSIndexPath!) -> Bool {
+        return true
+    }
+    
+    override func tableView(tableView: UITableView!, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath!) {
+        if (editingStyle == UITableViewCellEditingStyle.Delete) {
+            let managedObject:NSManagedObject = fetchedResultController.objectAtIndexPath(indexPath) as NSManagedObject
+            let managedObjectContext:NSManagedObjectContext = cdh.managedObjectContext
+            managedObjectContext.deleteObject(managedObject)
+            managedObjectContext.save(nil)
+        }
+    }
     
     /*
     // Override to support conditional editing of the table view.
