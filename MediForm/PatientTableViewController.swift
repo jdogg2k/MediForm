@@ -99,6 +99,7 @@ class PatientTableViewController: UITableViewController, NSFetchedResultsControl
             
             let vc = segue.destinationViewController as PatientViewController
             vc.patient = patient
+            vc.saveButton.setTitle("Save Edits", forState: UIControlState.Normal)
         }
     }
     

@@ -118,9 +118,25 @@ EFppcCBDb2RlA
                                     <rect key="frame" x="222" y="226" width="194" height="30"/>
                                 </variation>
                             </textField>
+                            <pickerView appearanceType="aqua" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HKZ-3t-1XV">
+                                <rect key="frame" x="0.0" y="-216" width="768" height="216"/>
+                                <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="-1" y="251" width="640" height="216"/>
+                                </variation>
+                            </pickerView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="HKZ-3t-1XV"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=regular-widthClass=regular">
+                            <mask key="subviews">
+                                <include reference="HKZ-3t-1XV"/>
+                            </mask>
+                        </variation>
                     </view>
                     <navigationItem key="navigationItem" title="New Patient" id="mc2-wU-xTP">
                         <barButtonItem key="rightBarButtonItem" style="plain" id="v05-ke-gfo">
@@ -141,6 +157,8 @@ EFppcCBDb2RlA
                         <outlet property="cityText" destination="7Kp-Ib-hso" id="UJB-XZ-udb"/>
                         <outlet property="firstNameText" destination="M3U-mw-RhA" id="PqJ-wA-ewU"/>
                         <outlet property="lastNameText" destination="L6B-qu-gCH" id="COz-Tx-4pX"/>
+                        <outlet property="saveButton" destination="HLi-18-y4f" id="mwx-pB-Jgb"/>
+                        <outlet property="statePicker" destination="HKZ-3t-1XV" id="SOs-fM-eDD"/>
                         <outlet property="stateText" destination="eEx-tP-nZe" id="wJ8-me-gyB"/>
                         <outlet property="zipText" destination="aKJ-eo-6X7" id="HBi-PM-jDF"/>
                     </connections>
@@ -167,6 +185,6 @@ EFppcCBDb2RlA
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="ob7-ZY-D1R"/>
+        <segue reference="6nV-Bo-KqH"/>
     </inferredMetricsTieBreakers>
 </document>

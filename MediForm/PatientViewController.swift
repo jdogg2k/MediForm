@@ -14,6 +14,7 @@ class PatientViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
+        statePicker.delegate = self
         firstNameText.delegate = self
         lastNameText.delegate = self
         addressText.delegate = self
@@ -54,17 +55,21 @@ class PatientViewController: UIViewController, UITextFieldDelegate {
     var validState : Bool = false
     var validZip : Bool = false
     
+    //var shoppingList: [String] = ["Eggs", "Milk"]
+    
+    @IBOutlet var saveButton : UIButton
     @IBOutlet var firstNameText : UITextField
     @IBOutlet var lastNameText : UITextField
     @IBOutlet var addressText : UITextField
     @IBOutlet var cityText : UITextField
     @IBOutlet var stateText : UITextField
     @IBOutlet var zipText : UITextField
+    @IBOutlet var statePicker : UIPickerView
     
     @IBAction func save(sender : AnyObject) {
         attemptSave()
     }
-    
+
     func textFieldShouldReturn(textField: UITextField) -> Bool{
         var nextTag = textField.tag + 1;
         let nextResponder : UIResponder? = textField.superview.viewWithTag(nextTag)
@@ -82,10 +87,19 @@ class PatientViewController: UIViewController, UITextFieldDelegate {
     }
     
     func attemptSave() {
+        var butText = saveButton.titleLabel.text
+        
+        validateAll()
+        
         if validFirst && validLast && validAddress && validCity && validZip {
             
             var error: NSError? = nil
+            
             var newPatient: Patient = NSEntityDescription.insertNewObjectForEntityForName("Patient", inManagedObjectContext: self.cdh.managedObjectContext) as Patient
+            if butText == "Save Edits" {
+            //save edits
+                newPatient = patient!
+            }
             newPatient.firstName = firstNameText.text
             newPatient.lastName = lastNameText.text
             newPatient.address = addressText.text
@@ -117,6 +131,15 @@ class PatientViewController: UIViewController, UITextFieldDelegate {
     
     func textFieldDidEndEditing(textField : UITextField) {
         validateTextField(textField)
+    }
+    
+    func validateAll(){
+        validateTextField(firstNameText)
+        validateTextField(lastNameText)
+        validateTextField(addressText)
+        validateTextField(cityText)
+        validateTextField(stateText)
+        validateTextField(zipText)
     }
     
     func validateTextField(textField : UITextField) {
@@ -177,4 +200,32 @@ class PatientViewController: UIViewController, UITextFieldDelegate {
         
         return resultPredicate.evaluateWithObject(zip)
     }
+}
+
+extension PatientViewController: UIPickerViewDataSource {
+    // two required methods
+    
+    func numberOfComponentsInPickerView(pickerView: UIPickerView!) -> Int {
+        return 1
+    }
+    
+    func pickerView(pickerView: UIPickerView!, numberOfRowsInComponent component: Int) -> Int {
+        return 5
+    }
+}
+
+extension PatientViewController: UIPickerViewDelegate {
+    // several optional methods:
+    
+    // func pickerView(pickerView: UIPickerView!, widthForComponent component: Int) -> CGFloat
+    
+    // func pickerView(pickerView: UIPickerView!, rowHeightForComponent component: Int) -> CGFloat
+    
+    // func pickerView(pickerView: UIPickerView!, titleForRow row: Int, forComponent component: Int) -> String!
+    
+    // func pickerView(pickerView: UIPickerView!, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString!
+    
+    // func pickerView(pickerView: UIPickerView!, viewForRow row: Int, forComponent component: Int, reusingView view: UIView!) -> UIView!
+    
+    // func pickerView(pickerView: UIPickerView!, didSelectRow row: Int, inComponent component: Int)
 }
