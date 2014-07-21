@@ -19,7 +19,6 @@ class PatientViewController: UIViewController, UITextFieldDelegate {
         lastNameText.delegate = self
         addressText.delegate = self
         cityText.delegate = self
-        stateText.delegate = self
         zipText.delegate = self
         
         if patient != nil {
@@ -27,7 +26,10 @@ class PatientViewController: UIViewController, UITextFieldDelegate {
             lastNameText.text = patient!.lastName
             addressText.text = patient!.address
             cityText.text = patient!.city
-            stateText.text = patient!.state
+            let stateSpot = find(allStateVals, patient!.state)
+            if stateSpot {
+                statePicker.selectRow(stateSpot!, inComponent: 0, animated: true)
+            }
             zipText.text = patient!.zipCode.stringValue
         }
         
@@ -52,19 +54,20 @@ class PatientViewController: UIViewController, UITextFieldDelegate {
     var validLast : Bool = false
     var validAddress : Bool = false
     var validCity : Bool = false
-    var validState : Bool = false
     var validZip : Bool = false
     
-    //var shoppingList: [String] = ["Eggs", "Milk"]
+    var allStates: [String] = ["Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorado", "Connecticut", "Delaware", "District of Columbia", "Florida", "Georgia", "Hawaii", "Idaho", "Illinois", "Indiana", "Iowa", "Kansas", "Kentucky", "Louisiana", "Maine", "Maryland", "Massachusetts", "Michigan", "Minnesota", "Mississippi", "Missouri", "Montana", "Nebraska", "Nevada", "New Hampshire", "New Jersey", "New Mexico", "New York", "North Carolina", "North Dakota", "Ohio", "Oklahoma", "Oregon", "Pennsylvania", "Rhode Island", "South Carolina", "South Dakota", "Tennessee", "Texas", "Utah", "Vermont", "Virginia", "Washington", "West Virginia", "Wisconsin", "Wyoming"]
+    var allStateVals: [String] = ["AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DE", "DC", "FL", "GA", "HI", "ID", "IL", "IN", "IA", "KS", "KY", "LA", "ME", "MD", "MA", "MI", "MN", "MS", "MO", "MT", "NE", "NV", "NH", "NJ", "NM", "NY", "NC", "ND", "OH", "OK", "OR", "PA", "RI", "SC", "SD", "TN", "TX", "UT", "VT", "VA", "WA", "WV", "WI", "WY"]
+    var selState = "AL"
     
-    @IBOutlet var saveButton : UIButton
-    @IBOutlet var firstNameText : UITextField
-    @IBOutlet var lastNameText : UITextField
-    @IBOutlet var addressText : UITextField
-    @IBOutlet var cityText : UITextField
-    @IBOutlet var stateText : UITextField
-    @IBOutlet var zipText : UITextField
-    @IBOutlet var statePicker : UIPickerView
+    
+    @IBOutlet var saveButton : UIButton!
+    @IBOutlet var firstNameText : UITextField!
+    @IBOutlet var lastNameText : UITextField!
+    @IBOutlet var addressText : UITextField!
+    @IBOutlet var cityText : UITextField!
+    @IBOutlet var zipText : UITextField!
+    @IBOutlet var statePicker : UIPickerView!
     
     @IBAction func save(sender : AnyObject) {
         attemptSave()
@@ -104,7 +107,7 @@ class PatientViewController: UIViewController, UITextFieldDelegate {
             newPatient.lastName = lastNameText.text
             newPatient.address = addressText.text
             newPatient.city = cityText.text
-            newPatient.state = stateText.text
+            newPatient.state = selState
             newPatient.zipCode = zipText.text.toInt()
             
             
@@ -138,14 +141,13 @@ class PatientViewController: UIViewController, UITextFieldDelegate {
         validateTextField(lastNameText)
         validateTextField(addressText)
         validateTextField(cityText)
-        validateTextField(stateText)
         validateTextField(zipText)
     }
     
     func validateTextField(textField : UITextField) {
         switch textField {
         case firstNameText:
-            if textField.text.utf16count < 1 {
+            if textField.text.utf16Count < 1 {
                 textField.backgroundColor = UIColor.redColor()
                 validFirst = false
             }
@@ -154,7 +156,7 @@ class PatientViewController: UIViewController, UITextFieldDelegate {
                 validFirst = true
             }
         case lastNameText:
-            if textField.text.utf16count < 1 {
+            if textField.text.utf16Count < 1 {
                 textField.backgroundColor = UIColor.redColor()
                 validLast = false
             }
@@ -163,7 +165,7 @@ class PatientViewController: UIViewController, UITextFieldDelegate {
                 validLast = true
             }
         case addressText:
-            if textField.text.utf16count < 1 {
+            if textField.text.utf16Count < 1 {
                 textField.backgroundColor = UIColor.redColor()
                 validAddress = false
             }
@@ -172,7 +174,7 @@ class PatientViewController: UIViewController, UITextFieldDelegate {
                 validAddress = true
             }
         case cityText:
-            if textField.text.utf16count < 1 {
+            if textField.text.utf16Count < 1 {
                 textField.backgroundColor = UIColor.redColor()
                 validCity = false
             }
@@ -210,7 +212,7 @@ extension PatientViewController: UIPickerViewDataSource {
     }
     
     func pickerView(pickerView: UIPickerView!, numberOfRowsInComponent component: Int) -> Int {
-        return 5
+        return 51
     }
 }
 
@@ -221,11 +223,20 @@ extension PatientViewController: UIPickerViewDelegate {
     
     // func pickerView(pickerView: UIPickerView!, rowHeightForComponent component: Int) -> CGFloat
     
-    // func pickerView(pickerView: UIPickerView!, titleForRow row: Int, forComponent component: Int) -> String!
+    func pickerView(pickerView: UIPickerView!, titleForRow row: Int, forComponent component: Int) -> String! {
+        return allStates[row]
+    }
     
     // func pickerView(pickerView: UIPickerView!, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString!
     
-    // func pickerView(pickerView: UIPickerView!, viewForRow row: Int, forComponent component: Int, reusingView view: UIView!) -> UIView!
+    func pickerView(pickerView: UIPickerView!, viewForRow row: Int, forComponent component: Int, reusingView view: UIView!) -> UIView! {
+        let label = UILabel()
+        label.text = "     " + allStates[row]
+        label.font = UIFont.systemFontOfSize(12)
+        return label
+    }
     
-    // func pickerView(pickerView: UIPickerView!, didSelectRow row: Int, inComponent component: Int)
+    func pickerView(pickerView: UIPickerView!, didSelectRow row: Int, inComponent component: Int) {
+        selState = allStateVals[row]
+    }
 }

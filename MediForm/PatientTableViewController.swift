@@ -14,14 +14,14 @@ class PatientTableViewController: UITableViewController, NSFetchedResultsControl
     {
         super.init(coder: aDecoder)
     }
-    @IBOutlet var patientTableView : UITableView
+    @IBOutlet var patientTableView : UITableView!
     
     init(style: UITableViewStyle) {
         super.init(style: style)
         // Custom initialization
     }
     
-    var patients: Patient[] = []
+    var patients: [Patient] = []
     
     var cdh: CoreDataHelper {
     if !_cdh {
@@ -87,7 +87,7 @@ class PatientTableViewController: UITableViewController, NSFetchedResultsControl
         
         var cell = tableView.dequeueReusableCellWithIdentifier("PatientListCell", forIndexPath: indexPath) as UITableViewCell
         let patient = fetchedResultController.objectAtIndexPath(indexPath) as Patient
-        cell.text = patient.firstName + " " + patient.lastName
+        cell.textLabel.text = patient.firstName + " " + patient.lastName
         return cell
 
     }
