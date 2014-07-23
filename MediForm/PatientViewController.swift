@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import MobileCoreServices
 
-class PatientViewController: UIViewController, UITextFieldDelegate {
+class PatientViewController: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,6 +32,12 @@ class PatientViewController: UIViewController, UITextFieldDelegate {
                 statePicker.selectRow(stateSpot!, inComponent: 0, animated: true)
             }
             zipText.text = patient!.zipCode.stringValue
+            if patient!.userImage {
+                var pImage = UIImage(data: patient!.userImage)
+                var imageRef = CGImageCreateCopy(pImage.CGImage)
+                
+                profileImage.image = UIImage(CGImage: imageRef, scale: UIScreen.mainScreen().scale, orientation: UIImageOrientation.Right)
+            }
         }
         
     }
@@ -68,9 +75,30 @@ class PatientViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet var cityText : UITextField!
     @IBOutlet var zipText : UITextField!
     @IBOutlet var statePicker : UIPickerView!
+    @IBOutlet weak var profileImage: UIImageView!
     
     @IBAction func save(sender : AnyObject) {
         attemptSave()
+    }
+    
+    @IBAction func takePicture(sender : UIButton) {
+        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera){
+            println("Button capture")
+            
+            var imag = UIImagePickerController()
+            imag.delegate = self
+            imag.sourceType = UIImagePickerControllerSourceType.Camera;
+            //imag.mediaTypes = [kUTTypeImage]
+            imag.allowsEditing = false
+            
+            self.presentViewController(imag, animated: true, completion: nil)
+        }
+    }
+    
+    func imagePickerController(picker: UIImagePickerController!, didFinishPickingImage image: UIImage!, editingInfo: NSDictionary!){
+        profileImage.image = image
+        println("i've got an image");
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
 
     func textFieldShouldReturn(textField: UITextField) -> Bool{
@@ -109,6 +137,9 @@ class PatientViewController: UIViewController, UITextFieldDelegate {
             newPatient.city = cityText.text
             newPatient.state = selState
             newPatient.zipCode = zipText.text.toInt()
+            if profileImage.image {
+                newPatient.userImage = UIImagePNGRepresentation(profileImage.image)
+            }
             
             
             if newPatient.managedObjectContext.save(&error){

@@ -35,7 +35,7 @@ class PatientTableViewController: UITableViewController, NSFetchedResultsControl
     var fetchedResultController: NSFetchedResultsController = NSFetchedResultsController()
     
     func getFetchedResultController() -> NSFetchedResultsController {
-        fetchedResultController = NSFetchedResultsController(fetchRequest: patientFetchRequest(), managedObjectContext: self.cdh.managedObjectContext, sectionNameKeyPath: nil, cacheName: nil)
+        fetchedResultController = NSFetchedResultsController(fetchRequest: patientFetchRequest(), managedObjectContext: self.cdh.managedObjectContext, sectionNameKeyPath: nil, cacheName: "Root")
         return fetchedResultController
     }
     
@@ -77,6 +77,7 @@ class PatientTableViewController: UITableViewController, NSFetchedResultsControl
         
         fetchedResultController = getFetchedResultController()
         fetchedResultController.delegate = self
+        println("cache: " + fetchedResultController.cacheName)
         fetchedResultController.performFetch(nil)
         
         tableView.reloadData()

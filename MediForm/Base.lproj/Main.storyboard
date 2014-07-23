@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6185.11" systemVersion="14A238x" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="EYn-5i-qeI">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6185.11" systemVersion="13D65" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="EYn-5i-qeI">
     <dependencies>
         <deployment defaultVersion="1808" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6190.4"/>
@@ -72,7 +72,7 @@
                             <pickerView tag="4" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HKZ-3t-1XV">
                                 <rect key="frame" x="0.0" y="-216" width="768" height="216"/>
                                 <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="358" y="160" width="194" height="162"/>
+                                    <rect key="frame" x="229" y="160" width="194" height="162"/>
                                 </variation>
                             </pickerView>
                             <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Last Name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="L6B-qu-gCH">
@@ -80,7 +80,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="next"/>
                                 <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="20" y="130" width="709" height="30"/>
+                                    <rect key="frame" x="20" y="130" width="532" height="30"/>
                                 </variation>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Address" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kHU-eg-POi">
@@ -88,7 +88,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" keyboardAppearance="light" returnKeyType="next"/>
                                 <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="20" y="178" width="709" height="30"/>
+                                    <rect key="frame" x="20" y="178" width="532" height="30"/>
                                 </variation>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" tag="3" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="City" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7Kp-Ib-hso">
@@ -96,7 +96,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="next"/>
                                 <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="20" y="226" width="336" height="30"/>
+                                    <rect key="frame" x="20" y="226" width="201" height="30"/>
                                 </variation>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="First Name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="M3U-mw-RhA">
@@ -104,7 +104,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="next"/>
                                 <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="20" y="84" width="709" height="30"/>
+                                    <rect key="frame" x="20" y="84" width="532" height="30"/>
                                 </variation>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" tag="5" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aKJ-eo-6X7">
@@ -115,19 +115,39 @@ EFppcCBDb2RlA
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="done"/>
                                 <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="560" y="226" width="169" height="30"/>
+                                    <rect key="frame" x="431" y="226" width="121" height="30"/>
                                 </variation>
                             </textField>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile.png" translatesAutoresizingMaskIntoConstraints="NO" id="IV5-dG-X8B">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="568" y="84" width="150" height="200"/>
+                                </variation>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lBg-kN-eWo">
+                                <rect key="frame" x="407" y="226" width="100" height="30"/>
+                                <state key="normal" title="Select Profile Image">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="575" y="287" width="137" height="30"/>
+                                </variation>
+                                <connections>
+                                    <action selector="takePicture:" destination="vky-I0-3eA" eventType="touchUpInside" id="4e3-Ff-r2u"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <variation key="default">
                             <mask key="subviews">
                                 <exclude reference="HKZ-3t-1XV"/>
+                                <exclude reference="IV5-dG-X8B"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=regular">
                             <mask key="subviews">
                                 <include reference="HKZ-3t-1XV"/>
+                                <include reference="IV5-dG-X8B"/>
                             </mask>
                         </variation>
                     </view>
@@ -150,6 +170,7 @@ EFppcCBDb2RlA
                         <outlet property="cityText" destination="7Kp-Ib-hso" id="UJB-XZ-udb"/>
                         <outlet property="firstNameText" destination="M3U-mw-RhA" id="PqJ-wA-ewU"/>
                         <outlet property="lastNameText" destination="L6B-qu-gCH" id="COz-Tx-4pX"/>
+                        <outlet property="profileImage" destination="IV5-dG-X8B" id="EuB-kR-U5y"/>
                         <outlet property="saveButton" destination="HLi-18-y4f" id="mwx-pB-Jgb"/>
                         <outlet property="statePicker" destination="HKZ-3t-1XV" id="SOs-fM-eDD"/>
                         <outlet property="zipText" destination="aKJ-eo-6X7" id="HBi-PM-jDF"/>
@@ -176,7 +197,10 @@ EFppcCBDb2RlA
             <point key="canvasLocation" x="83" y="443"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="profile.png" width="150" height="200"/>
+    </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="6nV-Bo-KqH"/>
+        <segue reference="ob7-ZY-D1R"/>
     </inferredMetricsTieBreakers>
 </document>

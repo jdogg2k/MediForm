@@ -16,6 +16,7 @@
 @dynamic firstName;
 @dynamic lastName;
 @dynamic state;
+@dynamic userImage;
 @dynamic zipCode;
 
 @end

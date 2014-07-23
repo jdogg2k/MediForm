@@ -17,6 +17,7 @@
 @property (nonatomic, retain) NSString * firstName;
 @property (nonatomic, retain) NSString * lastName;
 @property (nonatomic, retain) NSString * state;
+@property (nonatomic, retain) NSData * userImage;
 @property (nonatomic, retain) NSNumber * zipCode;
 
 @end

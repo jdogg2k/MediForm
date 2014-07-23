@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B1092DE6198046BE00DC56B2 /* profile.png in Resources */ = {isa = PBXBuildFile; fileRef = B1092DE5198046BE00DC56B2 /* profile.png */; };
 		B1A3740819756F6600C24CF7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A3740719756F6600C24CF7 /* AppDelegate.swift */; };
 		B1A3740B19756F6600C24CF7 /* MediForm.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B1A3740919756F6600C24CF7 /* MediForm.xcdatamodeld */; };
 		B1A3740D19756F6600C24CF7 /* PatientTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A3740C19756F6600C24CF7 /* PatientTableViewController.swift */; };
@@ -29,6 +30,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B1092DE5198046BE00DC56B2 /* profile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = profile.png; sourceTree = "<group>"; };
 		B18C6A3B197D9BDC00CF81B1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		B1A3740219756F6600C24CF7 /* MediForm.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MediForm.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1A3740619756F6600C24CF7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -87,6 +89,7 @@
 		B1A3740419756F6600C24CF7 /* MediForm */ = {
 			isa = PBXGroup;
 			children = (
+				B1092DE5198046BE00DC56B2 /* profile.png */,
 				B1A3740719756F6600C24CF7 /* AppDelegate.swift */,
 				B1A3740C19756F6600C24CF7 /* PatientTableViewController.swift */,
 				B1A3740E19756F6600C24CF7 /* Main.storyboard */,
@@ -209,6 +212,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B1A3741019756F6600C24CF7 /* Main.storyboard in Resources */,
+				B1092DE6198046BE00DC56B2 /* profile.png in Resources */,
 				B1A3741219756F6600C24CF7 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
