@@ -35,14 +35,18 @@ class PatientTableViewController: UITableViewController, NSFetchedResultsControl
     var fetchedResultController: NSFetchedResultsController = NSFetchedResultsController()
     
     func getFetchedResultController() -> NSFetchedResultsController {
-        fetchedResultController = NSFetchedResultsController(fetchRequest: patientFetchRequest(), managedObjectContext: self.cdh.managedObjectContext, sectionNameKeyPath: nil, cacheName: "Root")
+        println("getfetch")
+        fetchedResultController = NSFetchedResultsController(fetchRequest: patientFetchRequest(), managedObjectContext: self.cdh.managedObjectContext, sectionNameKeyPath: nil, cacheName: nil)
+        println("gotfetch")
         return fetchedResultController
     }
     
     func patientFetchRequest() -> NSFetchRequest {
+        println("makerequest")
         let fetchRequest = NSFetchRequest(entityName: "Patient")
         let sortDescriptor = NSSortDescriptor(key: "lastName", ascending: true)
         fetchRequest.sortDescriptors = [sortDescriptor]
+        println("endrequest")
         return fetchRequest
     }
     
@@ -77,10 +81,10 @@ class PatientTableViewController: UITableViewController, NSFetchedResultsControl
         
         fetchedResultController = getFetchedResultController()
         fetchedResultController.delegate = self
-        println("cache: " + fetchedResultController.cacheName)
         fetchedResultController.performFetch(nil)
-        
+        println(" ======== Done Fetching ======== ")
         tableView.reloadData()
+        println(" ======== Reloaded ======== ")
     }
     
     
@@ -89,8 +93,9 @@ class PatientTableViewController: UITableViewController, NSFetchedResultsControl
         var cell = tableView.dequeueReusableCellWithIdentifier("PatientListCell", forIndexPath: indexPath) as UITableViewCell
         let patient = fetchedResultController.objectAtIndexPath(indexPath) as Patient
         cell.textLabel.text = patient.firstName + " " + patient.lastName
+        println("generateCell" + String(indexPath.row))
         return cell
-
+        
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue!, sender: AnyObject!) {
